@@ -3,3 +3,39 @@
   margin: 0;
   padding: 0;
 }
+
+.app {
+  font-family: inter, Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  background-image: url(./assets/StreetFighterBG.jpg);
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-color: rgba(29, 29, 230, 0.862);
+  min-height: 100vh;
+  max-height: 100%;
+}
+
+header {
+  width: 100%;
+  background-color: hsla(0, 0%, 0%, 0.4);
+  padding-bottom: 20px;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.score {
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
+}
