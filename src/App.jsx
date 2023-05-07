@@ -24,6 +24,7 @@ import Cards from "./Components/Cards";
 export default function App() {
   const [images, setImages] = useState([]);
   let displayedImages;
+  //Initial setting of the images
   useEffect(() => {
     setImages([
       {
@@ -36,6 +37,102 @@ export default function App() {
         id: 1,
         image: Luke,
         name: "Luke",
+        clicked: false,
+      },
+      {
+        id: 2,
+        image: Jamie,
+        name: "Jamie",
+        clicked: false,
+      },
+      {
+        id: 3,
+        image: ChunLi,
+        name: "Chun-Li",
+        clicked: false,
+      },
+      {
+        id: 4,
+        image: Guile,
+        name: "Guile",
+        clicked: false,
+      },
+      {
+        id: 5,
+        image: Kimberly,
+        name: "Kimberly",
+        clicked: false,
+      },
+      {
+        id: 6,
+        image: Juri,
+        name: "Juri",
+        clicked: false,
+      },
+      {
+        id: 7,
+        image: Ken,
+        name: "Ken",
+        clicked: false,
+      },
+      {
+        id: 8,
+        image: Blanka,
+        name: "Blanka",
+        clicked: false,
+      },
+      {
+        id: 9,
+        image: Dhalsim,
+        name: "Dhalsim",
+        clicked: false,
+      },
+      {
+        id: 10,
+        image: EHonda,
+        name: "Ehonda",
+        clicked: false,
+      },
+      {
+        id: 11,
+        image: DeeJay,
+        name: "DeeJay",
+        clicked: false,
+      },
+      {
+        id: 12,
+        image: Manon,
+        name: "Manon",
+        clicked: false,
+      },
+      {
+        id: 13,
+        image: Marisa,
+        name: "Marisa",
+        clicked: false,
+      },
+      {
+        id: 14,
+        image: JP,
+        name: "JP",
+        clicked: false,
+      },
+      {
+        id: 15,
+        image: Zangief,
+        name: "Zangief",
+        clicked: false,
+      },
+      {
+        id: 16,
+        image: Lily,
+        name: "Lily",
+        clicked: false,
+      },
+      {
+        id: 17,
+        image: Cammy,
+        name: "Cammy",
         clicked: false,
       },
     ]);
