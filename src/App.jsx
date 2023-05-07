@@ -32,6 +32,12 @@ export default function App() {
         name: "Ryu",
         clicked: false,
       },
+      {
+        id: 1,
+        image: Luke,
+        name: "Luke",
+        clicked: false,
+      },
     ]);
   }, []);
 
