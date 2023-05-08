@@ -18,11 +18,15 @@ import JP from "./assets/cards/jp.jpg";
 import Zangief from "./assets/cards/zangief.jpg";
 import Lily from "./assets/cards/lily.jpg";
 import Cammy from "./assets/cards/cammy.jpg";
+import Theme from "./assets/victory-theme.mp3";
 import "./App.css";
 import Cards from "./Components/Cards";
 
 export default function App() {
   const [images, setImages] = useState([]);
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  const [win, setWin] = useState(false);
   let displayedImages;
   //Initial setting of the images
   useEffect(() => {
@@ -137,6 +141,73 @@ export default function App() {
       },
     ]);
   }, []);
+  //Use effect needed to keep bestScore up to date with score.
+  useEffect(() => {
+    if (bestScore < score) {
+      setBestScore(score);
+    }
+  }, [score]);
+  //Check bestscore for wincon
+  useEffect(() => {
+    if (bestScore === 18) {
+      setWin(true);
+    }
+  }, [bestScore]);
+
+  function checkClick(id, clicked) {
+    if (clicked === false) {
+      //if the object wasn't checked already, add it to the array as checked.
+      addClicked(id);
+      scoreIncrement();
+    } else {
+      //Else the game is lost, and we reset everything.
+      setScore(0);
+      resetClicked();
+    }
+    randomizeCards();
+  }
+
+  function addClicked(id) {
+    setImages((prev) => {
+      let newArray = [];
+      for (let i = 0; i < images.length; i++) {
+        if (prev[i].id === id) {
+          prev[i].clicked = true;
+          newArray.push(prev[i]);
+        } else {
+          newArray.push(prev[i]);
+        }
+      }
+      return newArray;
+    });
+  }
+
+  function resetClicked() {
+    setImages((prev) => {
+      let newArray = [];
+      for (let i = 0; i < images.length; i++) {
+        prev[i].clicked = false;
+        newArray.push(prev[i]);
+      }
+      return newArray;
+    });
+  }
+
+  function scoreIncrement() {
+    setScore((prev) => {
+      prev = prev + 1;
+      return prev;
+    });
+  }
+  //A shuffling algorithm from stack overflow, allows me to randomly replace each array value.
+  function randomizeCards() {
+    setImages((prev) => {
+      return prev
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+    });
+  }
 
   displayedImages = images.map((imageObject) => {
     return (
@@ -145,20 +216,38 @@ export default function App() {
         id={imageObject.id}
         image={imageObject.image}
         clicked={imageObject.clicked}
+        checkClick={checkClick}
       />
     );
   });
-  console.log(images);
   return (
     <div className="app">
       <header>
         <h1>Memory Fighter</h1>
         <div className="score">
-          <span>Score: 0</span>
-          <span>Best Score: 0</span>
+          <span>Score: {score}</span>
+          <span>Best Score: {bestScore}</span>
         </div>
       </header>
-      <div className="card-section">{displayedImages}</div>
+      {win === false && <div className="card-section">{displayedImages}</div>}
+      {win === true && (
+        <div className="win-screen">
+          <h1>Congratulations warrior! </h1>
+          <h2>
+            You have a keen mind that remembers even the smallest details. You
+            seem like a force to be reckoned with on the streets!
+          </h2>
+          <audio src={Theme} controls></audio>
+          <button
+            type="button"
+            onClick={() => {
+              location.reload();
+            }}
+          >
+            Play Again
+          </button>
+        </div>
+      )}
     </div>
   );
 }

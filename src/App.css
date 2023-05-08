@@ -29,7 +29,6 @@ header {
   padding-bottom: 20px;
   padding-left: 10px;
   padding-right: 10px;
-  margin-bottom: 20px;
 }
 
 header h1 {
@@ -54,6 +53,7 @@ header > span {
 .cards {
   width: min(355px, 80%);
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .card-section {
@@ -64,4 +64,37 @@ header > span {
   padding-right: 20px;
   gap: 20px;
   margin-bottom: 20px;
+}
+
+.win-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: hsla(0, 0%, 0%, 0.4);
+  text-align: center;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.win-screen h2 {
+  margin-bottom: 20px;
+}
+
+.win-screen audio {
+  margin-bottom: 20px;
+}
+
+.win-screen button {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(79, 79, 245, 0.845);
+  cursor: pointer;
+}
+
+.win-screen button:hover {
+  background-color: rgba(223, 146, 1, 0.84);
 }
